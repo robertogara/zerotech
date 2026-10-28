@@ -1,0 +1,128 @@
+# Copyright (C) 2026 Chatway Live Chat
+# This file is distributed under the GPL v3 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Chatway Live Chat 1.5.2\n"
+"Report-Msgid-Bugs-To: "
+"https://wordpress.org/support/plugin/wordpress-chatway-plugin\n"
+"POT-Creation-Date: 2026-08-04 09:25:00+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2026-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Country: United States\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: "
+"__;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;esc_"
+"attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;esc_html_x:1,2c;\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-Bookmarks: \n"
+"X-Textdomain-Support: yes\n"
+"X-Generator: grunt-wp-i18n 1.0.3\n"
+
+#: app/ChatwayApi.php:92
+msgid "Invalid token"
+msgstr ""
+
+#: app/ChatwayApi.php:98
+msgid "WooCommerce is not active"
+msgstr ""
+
+#: app/ChatwayApi.php:114 app/ChatwayApi.php:126
+msgid "Invalid request"
+msgstr ""
+
+#: app/ChatwayApi.php:165
+msgid "Invalid post type"
+msgstr ""
+
+#: app/ChatwayApi.php:219
+msgid "Post data fetched successfully"
+msgstr ""
+
+#: app/ChatwayApi.php:356
+msgid "Products fetched successfully"
+msgstr ""
+
+#: app/ChatwayApi.php:408
+msgid "Categories fetched successfully"
+msgstr ""
+
+#: app/ChatwayApi.php:514
+msgid "Coupons fetched successfully"
+msgstr ""
+
+#: app/ChatwayApi.php:612 app/ChatwayApi.php:733
+msgid "Orders fetched successfully"
+msgstr ""
+
+#: app/ChatwayApi.php:635
+msgid "Order id and email address are required"
+msgstr ""
+
+#: app/ChatwayApi.php:641
+msgid "Email address is not valid"
+msgstr ""
+
+#: app/ChatwayApi.php:650 app/ChatwayApi.php:659 app/ChatwayApi.php:666
+msgid "Order not found"
+msgstr ""
+
+#: app/View.php:31
+msgid "Need help?"
+msgstr ""
+
+#: app/View.php:155 app/View.php:156
+msgid "Support"
+msgstr ""
+
+#: app/View.php:174
+msgid "Chatway Dashboard"
+msgstr ""
+
+#: app/View.php:175
+msgid "Chatway"
+msgstr ""
+
+#: app/View.php:184 app/View.php:185
+msgid "Live Chat"
+msgstr ""
+
+#: app/View.php:194
+msgid "Chatway Full-Screen View"
+msgstr ""
+
+#: app/View.php:195
+msgid "Full-Screen View"
+msgstr ""
+
+#: app/View.php:205
+msgid "Chatway Logout"
+msgstr ""
+
+#: app/View.php:206
+msgid "Log Out"
+msgstr ""
+
+#: views/auth.php:14 views/dashboard.php:14 views/error.php:15
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Chatway Live Chat"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Chatway is a live chat app. Use Chatway to chat with your website's "
+"visitors."
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://chatway.app/"
+msgstr ""

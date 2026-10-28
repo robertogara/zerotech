@@ -1,0 +1,1 @@
+2026-10-28T17:18:57+00:00 WARNING Email "admin_payment_gateway_enabled" failed to send: No se ha podido establecer la función de correo. CONTEXT: {"email_type":"admin_payment_gateway_enabled","status":"failed","recipient":"admin","WC_Gateway_BACS":null}
