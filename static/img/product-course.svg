@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560" role="img" aria-labelledby="title desc">
+  <title id="title">Curso Premium SMR</title><desc id="desc">Portátil abierto sobre un escritorio con una pantalla de aprendizaje</desc>
+  <rect width="900" height="560" fill="#f3f3f0"/><circle cx="716" cy="117" r="170" fill="#e4e9e7"/>
+  <rect x="180" y="87" width="540" height="344" rx="19" fill="#222d31"/><rect x="197" y="104" width="506" height="310" rx="9" fill="#fafbf9"/>
+  <rect x="230" y="136" width="137" height="246" rx="9" fill="#315b57"/><rect x="251" y="163" width="95" height="12" rx="6" fill="#dbe7df"/><rect x="251" y="190" width="73" height="8" rx="4" fill="#b4cbc1"/><circle cx="298" cy="270" r="42" fill="#477c70"/><path d="m282 249 35 21-35 21z" fill="#fff"/><rect x="390" y="143" width="272" height="18" rx="9" fill="#243331"/><rect x="390" y="178" width="226" height="10" rx="5" fill="#c8cfcb"/><rect x="390" y="204" width="249" height="10" rx="5" fill="#d7dcda"/>
+  <rect x="390" y="249" width="79" height="106" rx="8" fill="#e9efeb"/><rect x="482" y="249" width="80" height="106" rx="8" fill="#edf0ed"/><rect x="575" y="249" width="79" height="106" rx="8" fill="#e5ece8"/><path d="M143 432h614l-53 55H196z" fill="#8b9792"/><path d="M164 434h572l-39 37H204z" fill="#d8dedb"/><rect x="386" y="438" width="127" height="9" rx="4" fill="#9ca7a2"/>
+  <rect x="321" y="505" width="258" height="5" rx="3" fill="#c0c7c3"/>
+</svg>

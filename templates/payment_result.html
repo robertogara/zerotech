@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% from "_icons.html" import icon %}
+{% block content %}
+<section class="payment-result-section container" aria-labelledby="payment-result-title">
+  <div class="payment-result-card">
+    {% if payment_state == "cancelled" %}
+    <p class="eyebrow">Pago cancelado</p>
+    <h1 id="payment-result-title">El proceso de pago se canceló</h1>
+    <p>No se marca ningún pedido como pagado. Si el proveedor llegó a procesar un método de pago, comprueba su estado antes de volver a intentarlo.</p>
+    {% elif payment_state == "approved" %}
+    <p class="eyebrow">Pago confirmado por Stripe</p>
+    <h1 id="payment-result-title">El proveedor confirmó el pago</h1>
+    <p>El estado se verificó consultando a Stripe. La entrega automática del curso o la consultoría todavía no está configurada; confirma sus condiciones antes de activar pagos reales.</p>
+    {% elif payment_state == "pending" %}
+    <p class="eyebrow">Pago pendiente</p>
+    <h1 id="payment-result-title">Stripe aún no confirma el pago</h1>
+    <p>Algunos métodos necesitan más tiempo para confirmar el resultado. No repitas el pago todavía; vuelve a consultar esta página o revisa el estado con el proveedor.</p>
+    {% else %}
+    <p class="eyebrow">Error al verificar</p>
+    <h1 id="payment-result-title">No podemos verificar el estado del pago</h1>
+    <p>Esta pantalla no confirma que se haya pagado. Consulta el estado directamente con el proveedor antes de volver a intentarlo.</p>
+    {% endif %}
+    <div class="hero-actions">
+      <a class="button button-primary" href="{{ url_for('index') }}">Volver a la tienda {{ icon("arrow") }}</a>
+      <a class="button button-secondary" href="{{ url_for('index') }}">Ir al inicio</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

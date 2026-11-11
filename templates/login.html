@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% from "_icons.html" import icon %}
+{% block content %}
+<section class="account-section container" aria-labelledby="login-title">
+  <div class="account-card">
+    <p class="eyebrow">Cuenta ZeroTech</p>
+    <h1 id="login-title">Iniciar sesión</h1>
+    <p class="account-intro">La autenticación de cuentas todavía no está conectada a un proveedor. Esta pantalla no enviará ni guardará tus credenciales.</p>
+    <form class="site-form login-form" id="login-form">
+      <div class="form-field">
+        <label for="login-email">Correo electrónico</label>
+        <input id="login-email" name="email" type="email" autocomplete="username" maxlength="254" required>
+      </div>
+      <div class="form-field">
+        <label for="login-password">Contraseña</label>
+        <div class="password-control">
+          <input id="login-password" name="password" type="password" autocomplete="current-password" required>
+          <button class="password-toggle" id="password-toggle" type="button" aria-pressed="false" aria-controls="login-password">Mostrar</button>
+        </div>
+        <p class="field-help" id="login-password-help">No escribas una contraseña que uses en otros servicios: aún no es posible iniciar sesión.</p>
+      </div>
+      <p class="form-feedback" id="login-status" role="status" aria-live="polite"></p>
+      <button class="button button-primary" id="login-submit" type="button">Comprobar disponibilidad {{ icon("arrow") }}</button>
+    </form>
+    <p class="account-footnote">Para habilitar cuentas hace falta configurar un proveedor de identidad y una sesión segura en el servidor.</p>
+  </div>
+</section>
+{% endblock %}

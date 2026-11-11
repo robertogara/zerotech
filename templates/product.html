@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% from "_icons.html" import icon %}
+{% block content %}
+<article class="product-detail container standalone-page">
+  <a class="back-link" href="{{ url_for('index') }}">← Volver a la tienda</a>
+  <div class="product-detail-main">
+    <img class="product-detail-image" src="{{ url_for('static', filename=product.image, v='2') }}" alt="{{ product.image_alt }}" width="960" height="600">
+    <div><p class="eyebrow">Propuesta ZeroTech</p><h1>{{ product.name }}</h1><p class="product-detail-price">{{ format_eur(product.price_cents) }}</p><p>{{ product.description }}</p><p class="product-detail-copy">{% if product.id == 'curso-premium-smr' %}Una propuesta formativa para aprender los contenidos de Sistemas Microinformáticos y Redes. El programa, el formato y la duración se publicarán cuando estén confirmados.{% else %}Una sesión de apoyo técnico adaptada a la consulta que plantees. El alcance, la duración y la modalidad se acordarán antes de contratar.{% endif %}</p><button class="button button-primary add-to-cart" type="button" data-product-id="{{ product.id }}" data-price-cents="{{ product.price_cents }}">{{ icon("plus") }} Añadir al carrito</button></div>
+  </div>
+  <section class="reviews-section" id="resenas" aria-labelledby="reviews-title">
+    <h2 id="reviews-title">Opiniones y valoraciones</h2>
+    {% if average is not none %}<p class="review-average"><span aria-label="{{ average }} de 5 estrellas">{% for star in range(1,6) %}{{ '★' if average >= star else '☆' }}{% endfor %}</span> {{ average }}/5 · {{ reviews|length }} {% if reviews|length == 1 %}opinión{% else %}opiniones{% endif %}</p>{% else %}<p>Aún no hay opiniones. Puedes ser la primera persona en valorar este producto.</p>{% endif %}
+    {% if reviews %}<div class="review-list">{% for review in reviews %}<article class="review-item"><div><strong>{{ review.name }}</strong><span class="review-stars" aria-label="{{ review.rating }} de 5 estrellas">{% for star in range(1,6) %}{{ '★' if review.rating >= star else '☆' }}{% endfor %}</span></div><p>{{ review.comment }}</p><time datetime="{{ review.created_at }}">{{ review.created_at[:10] }}</time></article>{% endfor %}</div>{% endif %}
+    <form class="site-form review-form" id="escribir-resena" action="{{ url_for('submit_review', product_id=product.id) }}" method="post">
+      <h3>Deja tu valoración</h3>{% if review_error %}<p class="form-feedback error" role="alert">{{ review_error }}</p>{% endif %}<input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+      <div class="form-field"><label for="review-name">Nombre visible</label><input id="review-name" name="name" maxlength="80" required></div>
+      <div class="form-field"><label for="review-rating">Puntuación</label><select id="review-rating" name="rating" required><option value="">Elige una puntuación</option><option value="5">5 — Excelente</option><option value="4">4 — Muy bien</option><option value="3">3 — Bien</option><option value="2">2 — Mejorable</option><option value="1">1 — Insuficiente</option></select></div>
+      <div class="form-field"><label for="review-comment">Comentario</label><textarea id="review-comment" name="comment" rows="5" maxlength="2000" required></textarea></div>
+      <p class="form-note">Tu nombre y comentario serán visibles públicamente en esta página.</p><button class="button button-secondary" type="submit">Publicar opinión</button>
+    </form>
+  </section>
+</article>
+{% endblock %}

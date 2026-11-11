@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero container syllabus-page" id="inicio" aria-labelledby="hero-title">
+  <h1 class="wordpress-page-title">Temario</h1>
+  <div class="hero-copy">
+    <p class="wordpress-site-title"><strong>ZeroTech 💻</strong></p>
+    <h2 id="hero-title">Aprende informática desde cero</h2>
+    <p class="hero-description">Bienvenido a ZeroTech, una web educativa diseñada para aprender los fundamentos de la informática de una forma sencilla, visual y práctica.</p>
+  </div>
+  <nav class="topic-list" aria-label="Temas del temario">
+    {% for topic in topics %}
+    <a class="topic-list-link" href="{{ url_for('topic_page', slug=topic.id) }}">
+      <span class="topic-list-emoji" aria-hidden="true">{{ topic.emoji }}</span>
+      <span><strong>{{ topic.title }}</strong><small>{{ topic.description }}</small></span>
+      <span class="topic-list-arrow" aria-hidden="true">→</span>
+    </a>
+    {% endfor %}
+  </nav>
+  <section class="objective-section" id="objetivo" aria-labelledby="objective-title">
+    <div><p class="eyebrow">Por qué existe ZeroTech</p><h2 id="objective-title">Objetivo</h2><p>Acercar la informática a cualquier persona, explicando los conceptos paso a paso y sin necesidad de tener conocimientos previos.</p></div>
+  </section>
+</section>
+{% endblock %}

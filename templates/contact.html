@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% from "_icons.html" import icon %}
+{% block content %}
+<section class="contact-section section container standalone-page" aria-labelledby="contact-title">
+  <p class="eyebrow">Contacto</p><h1 id="contact-title">¿Tienes una consulta?</h1>
+  <p class="standalone-intro">Cuéntanos qué necesitas y te responderemos por correo.</p>
+  <div class="contact-card">
+    <p class="form-feedback {{ contact_feedback.kind if contact_feedback else '' }}" id="contact-status" role="{{ 'alert' if contact_feedback and contact_feedback.kind == 'error' else 'status' }}" aria-live="{{ 'assertive' if contact_feedback and contact_feedback.kind == 'error' else 'polite' }}">{{ contact_feedback.message if contact_feedback else '' }}</p>
+    <p class="form-note">{% if contact_service_configured %}El proveedor de correo está configurado. El mensaje solo se confirmará si el servicio acepta el envío.{% else %}El envío aún necesita que ZeroTech configure un proveedor de correo. Si envías el formulario ahora, tus datos no se enviarán ni guardarán.{% endif %}</p>
+    <form class="site-form contact-form" id="contact-form" action="{{ url_for('contact_form') }}" method="post">
+      <div class="contact-fields">
+        <div class="form-field"><label for="contact-name">Nombre</label><input id="contact-name" name="name" type="text" autocomplete="name" maxlength="100" required></div>
+        <div class="form-field"><label for="contact-email">Correo electrónico</label><input id="contact-email" name="email" type="email" autocomplete="email" maxlength="254" required></div>
+        <div class="form-field form-field-wide"><label for="contact-subject">Asunto</label><input id="contact-subject" name="subject" type="text" maxlength="160" required></div>
+        <div class="form-field form-field-wide"><label for="contact-message">Mensaje</label><textarea id="contact-message" name="message" rows="6" maxlength="5000" required></textarea></div>
+        <div class="form-honeypot" aria-hidden="true"><label for="contact-website">No rellenes este campo</label><input id="contact-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+      </div><button class="button button-primary" type="submit">Enviar consulta {{ icon("arrow") }}</button>
+    </form>
+  </div>
+  <section class="reference-location" aria-labelledby="reference-location-title">
+    <h2 id="reference-location-title">Ubicación de referencia en Valencia</h2>
+    <p>El mapa señala Calle Colón, 25, 46004 Valencia, España, junto a la Apple Store de Valencia. Es solo una ubicación de referencia: no es la dirección real de ZeroTech ni indica que exista una tienda física allí.</p>
+    <div class="map-frame">
+      <iframe
+        title="Mapa de referencia de Calle Colón, 25, 46004 Valencia, España"
+        src="https://www.google.com/maps?q=Calle+Col%C3%B3n%2C+25%2C+46004+Valencia%2C+Espa%C3%B1a&amp;output=embed"
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen>
+      </iframe>
+    </div>
+    <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Calle+Col%C3%B3n%2C+25%2C+46004+Valencia%2C+Espa%C3%B1a" target="_blank" rel="noopener noreferrer">Abrir ubicación de referencia en Google Maps ↗</a>
+  </section>
+</section>
+{% endblock %}

@@ -1,0 +1,10 @@
+.env
+.env.*
+!.env.example
+instance/
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+static/wp-content/
+static/wp-includes/

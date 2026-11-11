@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<article class="topic-page container">
+  <a class="back-link" href="{{ url_for('syllabus') }}">← Volver al temario</a>
+  <header class="topic-page-header"><p class="eyebrow">Temario ZeroTech</p><h1><span aria-hidden="true">{{ topic.emoji }}</span> {{ topic.title }}</h1><p class="topic-description">{{ topic.description }}</p></header>
+  <p class="lesson-intro">{{ topic.lesson_intro }}</p>
+  <figure class="topic-photo">
+    <img src="{{ url_for('static', filename=topic.image, v='2') }}" alt="{{ topic.image_alt }}" width="960" height="600" loading="lazy">
+  </figure>
+  <div class="lesson-layout">
+    <section class="lesson-steps"><h2>Aprende paso a paso</h2><ol>{% for step in topic.steps %}<li><strong>{{ step.title }}</strong><p>{{ step.text }}</p></li>{% endfor %}</ol></section>
+    <aside class="lesson-aside"><h2>Conceptos clave</h2><ul class="concept-list">{% for concept in topic.concepts %}<li>{{ concept }}</li>{% endfor %}</ul><div class="lesson-example"><h3>Ejemplo sencillo</h3><p>{{ topic.example }}</p></div><div class="lesson-summary"><h3>En resumen</h3><p>{{ topic.summary }}</p></div></aside>
+  </div>
+  <nav class="topic-pagination" aria-label="Otros temas"><span>Seguir aprendiendo</span>{% for item in topics %}{% if item.id != topic.id %}<a href="{{ url_for('topic_page', slug=item.id) }}">{{ item.title }} →</a>{% endif %}{% endfor %}</nav>
+</article>
+{% endblock %}

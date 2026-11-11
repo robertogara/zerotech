@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% from "_icons.html" import icon %}
+{% block content %}
+<section class="shop-section section container standalone-page" aria-labelledby="shop-title">
+  <p class="eyebrow">Tienda ZeroTech</p><h1 id="shop-title">Aprende y recibe apoyo técnico</h1>
+  <p class="standalone-intro">Explora las propuestas de formación y asistencia técnica de ZeroTech.</p>
+  <div class="product-grid">
+    {% for product in products %}
+    <article class="product-card">
+      <a class="product-image-link" href="{{ url_for('product_page', product_id=product.id) }}" aria-label="Ver {{ product.name }}"><img class="product-image" src="{{ url_for('static', filename=product.image, v='2') }}" alt="{{ product.image_alt }}" width="960" height="600" loading="{{ 'eager' if loop.first else 'lazy' }}" fetchpriority="{{ 'high' if loop.first else 'auto' }}"></a>
+      <div class="product-card-top"><span class="product-price">{{ format_eur(product.price_cents) }}</span></div>
+      <h2><a class="product-title-link" href="{{ url_for('product_page', product_id=product.id) }}">{{ product.name }}</a></h2>
+      <p class="product-description">{{ product.description }}</p>
+      <div class="product-actions"><a class="text-link" href="{{ url_for('product_page', product_id=product.id) }}">Ver detalles y opiniones →</a><button class="button button-secondary add-to-cart" type="button" data-product-id="{{ product.id }}" data-price-cents="{{ product.price_cents }}">{{ icon("plus") }} Añadir</button></div>
+    </article>
+    {% endfor %}
+  </div>
+  <p class="shop-note">{{ icon("info") }} Los detalles de la prestación y sus condiciones se confirmarán antes de habilitar compras reales.</p>
+</section>
+{% endblock %}

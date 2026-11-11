@@ -1,0 +1,164 @@
+{% from "_icons.html" import icon %}
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f3ec">
+  <meta name="description" content="{{ meta_description }}">
+  <meta name="color-scheme" content="light">
+  <meta name="robots" content="{{ robots_content|default('index, follow') }}">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="ZeroTech">
+  <meta property="og:title" content="{{ page_title }}">
+  <meta property="og:description" content="{{ meta_description }}">
+  <meta name="twitter:card" content="summary">
+  {% if canonical_url %}
+  <link rel="canonical" href="{{ canonical_url }}">
+  <meta property="og:url" content="{{ canonical_url }}">
+  {% endif %}
+  <link rel="icon" href="{{ url_for('static', filename='img/favicon.svg', v='3') }}" type="image/svg+xml">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/site.css', v='11') }}">
+  <title>{{ page_title }}</title>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header class="site-header">
+    <nav class="nav container" aria-label="Navegación principal">
+      <a class="brand" href="{{ url_for('index') }}" aria-label="ZeroTech, inicio">
+        <span class="brand-mark">{{ icon("hardware") }}</span>
+        <span>Zero<span class="brand-accent">Tech</span></span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-links">
+        <span class="sr-only">Abrir menú</span>
+        <span class="menu-toggle-lines" aria-hidden="true"></span>
+      </button>
+      <div class="nav-links" id="primary-links">
+        <a href="{{ url_for('syllabus') }}">Temario</a>
+        <a href="{{ url_for('index') }}">Tienda</a>
+        <a href="{{ url_for('contact_page_es') }}">Contacto</a>
+      </div>
+      <a class="account-icon-link" href="{{ url_for('login') }}" aria-label="Iniciar sesión">{{ icon("user") }}</a>
+      <button class="cart-trigger" id="cart-trigger" type="button" aria-label="Abrir carrito, 0 productos" aria-haspopup="dialog" aria-controls="cart-dialog">
+        {{ icon("cart") }}<span class="sr-only">Carrito</span><span class="cart-count" id="cart-count" aria-hidden="true">0</span>
+      </button>
+    </nav>
+  </header>
+
+  <script id="product-catalog" type="application/json">{{ products|tojson }}</script>
+  <main id="contenido">
+    {% block content %}{% endblock %}
+  </main>
+  <p class="sr-only" id="site-status" role="status" aria-live="polite"></p>
+  <noscript>
+    <p class="noscript-notice">JavaScript es necesario para desplegar las lecciones, usar el carrito y abrir el chat. Sin él puedes consultar las descripciones y los precios, pero no el contenido completo de los temarios.</p>
+  </noscript>
+
+  <footer class="site-footer">
+    <div class="footer-main container">
+      <div class="footer-brand-block">
+        <a class="brand" href="{{ url_for('index') }}">
+          <span class="brand-mark">{{ icon("hardware") }}</span>
+          <span>Zero<span class="brand-accent">Tech</span></span>
+        </a>
+        <p>Un espacio para entender la tecnología, desde lo esencial.</p>
+      </div>
+      <div class="footer-nav">
+        <div>
+          <h2>Aprendizaje</h2>
+          <a href="{{ url_for('syllabus') }}">Temario</a>
+          <a href="{{ url_for('topic_page', slug='hardware') }}">Hardware</a>
+          <a href="{{ url_for('topic_page', slug='redes') }}">Redes informáticas</a>
+          <a href="{{ url_for('topic_page', slug='sistemas-operativos') }}">Sistemas operativos</a>
+          <a href="{{ url_for('topic_page', slug='seguridad') }}">Seguridad informática</a>
+        </div>
+        <div>
+          <h2>ZeroTech</h2>
+          <a href="{{ url_for('syllabus') }}#objetivo">Objetivo</a>
+          <a href="{{ url_for('index') }}">Tienda</a>
+          <a href="{{ url_for('contact_page_es') }}">Contacto</a>
+          <a href="{{ url_for('login') }}">Iniciar sesión</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>© {{ current_year }} ZeroTech. Contenido educativo.</p>
+        <a href="#contenido">Volver arriba ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <dialog class="cart-dialog" id="cart-dialog" aria-labelledby="cart-dialog-title">
+    <div class="cart-dialog-inner">
+      <header class="dialog-header">
+        <div>
+          <p class="eyebrow">ZeroTech</p>
+          <h2 id="cart-dialog-title">Tu carrito</h2>
+        </div>
+        <button class="icon-button dialog-close" id="cart-close" type="button" aria-label="Cerrar carrito">{{ icon("close") }}</button>
+      </header>
+      <section id="cart-view" aria-labelledby="cart-dialog-title">
+        <p class="cart-empty" id="cart-empty" hidden>Tu carrito está vacío. Puedes añadir una propuesta desde la tienda.</p>
+        <ul class="cart-items" id="cart-items" aria-label="Productos en el carrito"></ul>
+        <div class="cart-totals" id="cart-totals">
+          <p><span>Subtotal</span><strong id="cart-subtotal">0,00 €</strong></p>
+          <p class="cart-total"><span>Total</span><strong id="cart-total">0,00 €</strong></p>
+          <p class="cart-disclaimer">Total provisional de los productos. No se han añadido impuestos, gastos ni cargos. La entrega de los productos aún debe confirmarse.</p>
+          <button class="button button-primary checkout-trigger" id="checkout-trigger" type="button">Continuar</button>
+        </div>
+      </section>
+      <section class="checkout-view" id="checkout-view" aria-labelledby="checkout-title" hidden>
+        <button class="back-link" id="back-to-cart" type="button">{{ icon("arrow-left") }} Volver al carrito</button>
+        <p class="eyebrow">Resumen del pedido</p>
+        <h2 id="checkout-title">{% if stripe_checkout_enabled %}Continuar con Stripe{% else %}Pago no disponible todavía{% endif %}</h2>
+        <ul class="checkout-items" id="checkout-items" aria-label="Resumen de productos"></ul>
+        <p class="checkout-total"><span>Total provisional</span><strong id="checkout-total">0,00 €</strong></p>
+        <div class="payment-notice" role="status">
+          {{ icon("lock") }}
+          <div>
+            {% if stripe_checkout_enabled %}
+            <strong>Pago alojado y procesado por Stripe</strong>
+            <p>Stripe mostrará solo los métodos habilitados para esta cuenta y compatibles con la sesión. ZeroTech no recibe ni guarda datos de tarjeta; el pago solo se confirma tras verificarlo con Stripe. La entrega de los productos aún requiere configuración.</p>
+            {% else %}
+            <strong>Pasarela de pago sin configurar</strong>
+            <p>No introduzcas datos de pago. Esta web no procesa compras ni recopila información de tarjeta. {{ stripe_checkout_configuration_error }}</p>
+            {% endif %}
+          </div>
+        </div>
+        <p class="checkout-feedback" id="checkout-feedback" role="alert" aria-live="assertive"></p>
+        {% if stripe_checkout_enabled %}
+        <button class="button button-primary" id="stripe-checkout" type="button">Ir a pago seguro con Stripe</button>
+        {% else %}
+        <button class="button button-disabled" id="stripe-checkout" type="button" disabled>Pago temporalmente desactivado</button>
+        {% endif %}
+      </section>
+      <p class="cart-status sr-only" id="cart-status" role="status" aria-live="polite"></p>
+    </div>
+  </dialog>
+
+  <div class="chat-widget">
+    <section class="chat-panel" id="chat-panel" aria-labelledby="chat-title" hidden>
+      <header class="chat-header">
+        <div><span class="chat-status-dot" aria-hidden="true"></span><h2 id="chat-title">Asistente ZeroTech</h2></div>
+        <button class="icon-button chat-close" id="chat-close" type="button" aria-label="Minimizar chat">{{ icon("minus") }}</button>
+      </header>
+      <p class="chat-disclosure">{% if assistant_configured %}Las preguntas se envían a OpenAI a través del servidor de ZeroTech. No se guarda el historial.{% else %}Falta OPENAI_API_KEY en el servidor. No se enviará tu pregunta hasta configurar el asistente.{% endif %}</p>
+      <div class="chat-messages" id="chat-messages" role="log" aria-live="polite" aria-relevant="additions text" aria-label="Conversación">
+        <p class="chat-message assistant-message">{% if assistant_configured %}¡Hola! Escribe una pregunta y te responderé sobre informática.{% else %}El asistente no está configurado. Añade OPENAI_API_KEY en el servidor para recibir respuestas.{% endif %}</p>
+      </div>
+      <form class="chat-form" id="chat-form">
+        <label class="sr-only" for="chat-input">Escribe tu pregunta</label>
+        <input id="chat-input" name="message" type="text" maxlength="1000" autocomplete="off" placeholder="Escribe una pregunta…" required>
+        <button class="chat-send" type="submit" aria-label="Enviar pregunta">{{ icon("arrow") }}</button>
+      </form>
+      <p class="chat-footnote">No incluyas información personal en tus preguntas.</p>
+    </section>
+    <button class="chat-launcher" id="chat-launcher" type="button" aria-label="Abrir chat" aria-expanded="false" aria-controls="chat-panel">
+      {{ icon("chat") }}<span>Chat</span>
+    </button>
+  </div>
+  <script src="{{ url_for('static', filename='js/site.js', v='8') }}" defer></script>
+</body>
+</html>

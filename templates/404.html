@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% from "_icons.html" import icon %}
+{% block content %}
+<section class="not-found container">
+  <p class="eyebrow">Error 404</p>
+  <h1>No encontramos esa página.</h1>
+  <p>Puede que el enlace haya cambiado. Vuelve al inicio o explora los contenidos.</p>
+  <div class="hero-actions"><a class="button button-primary" href="{{ url_for('syllabus') }}">Ir al temario {{ icon("arrow") }}</a><a class="button button-secondary" href="{{ url_for('index') }}">Ver la tienda</a></div>
+</section>
+{% endblock %}
